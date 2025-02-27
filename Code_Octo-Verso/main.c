@@ -67,7 +67,7 @@ int main() {
             printf("%d> ", joueur + 1);
 
             fgets(input, sizeof(input), stdin);
-            input[strcspn(input, "\n")] = '\0'; // Supprime le caractère de nouvelle ligne
+            input[strcspn(input, "\n")] = '\0'; // Supprime le caractÃ¨re de nouvelle ligne
             convmaj(input);
 
             while (input[0] == '-') {
@@ -79,26 +79,26 @@ int main() {
                 afficheListe(joueur ? &j2 : &j1);
                 printf("%d> ", joueur + 1);
                 fgets(input, sizeof(input), stdin);
-                input[strcspn(input, "\n")] = '\0'; // Supprime le caractère de nouvelle ligne
+                input[strcspn(input, "\n")] = '\0'; // Supprime le caractÃ¨re de nouvelle ligne
                 convmaj(input);
             }
 
 
             char sens[MAX_SENS] = { 0 }, entreParentheses[MAX_EP_RESTE] = { 0 }, reste[MAX_EP_RESTE] = { 0 };
 
-            // Trouver les parenthèses
+            // Trouver les parenthÃ¨ses
             char* parentheseOuvrante = strchr(input, '(');
             char* parentheseFermante = strchr(input, ')');
 
             if (parentheseOuvrante && parentheseFermante) {
-                // Extraire la partie entre parenthèses
+                // Extraire la partie entre parenthÃ¨ses
                 strncpy(entreParentheses, parentheseOuvrante + 1, parentheseFermante - parentheseOuvrante - 1);
                 entreParentheses[parentheseFermante - parentheseOuvrante - 1] = '\0';
 
-                // Extraire le sens (premier caractère de l'entrée)
+                // Extraire le sens (premier caractÃ¨re de l'entrÃ©e)
                 sens[0] = input[0];
 
-                // Extraire les parties avant et après les parenthèses pour 'reste'
+                // Extraire les parties avant et aprÃ¨s les parenthÃ¨ses pour 'reste'
                 if (parentheseOuvrante > input + 1) {
                     strncat(reste, input + 2, parentheseOuvrante - input - 2);
                 }
@@ -110,7 +110,7 @@ int main() {
 
 
 
-            // Créer les mots en concatenant "reste" et "entreParanthese" dans les deux ordres possibles
+            // CrÃ©er les mots en concatenant "reste" et "entreParanthese" dans les deux ordres possibles
             char motsJ[MAX_EP_RESTE] = "";
             char motsJin[MAX_EP_RESTE] = "";
 
@@ -254,7 +254,7 @@ int main() {
                     if (compterCaracteres(motsJ) == 8) {
                         printf("-%d> ", joueur + 1);
                         fgets(input, sizeof(input), stdin);
-                        input[strcspn(input, "\n")] = '\0'; // Supprime le caractère de nouvelle ligne
+                        input[strcspn(input, "\n")] = '\0'; // Supprime le caractÃ¨re de nouvelle ligne
                         convmaj(input);
                         char piochechaine = input[0];
                         piochez(joueur ? &j2 : &j1, &p, piochechaine);
