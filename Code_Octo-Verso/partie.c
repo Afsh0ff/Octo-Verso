@@ -86,13 +86,13 @@ void pioche(Liste* p) {
 void trierChevalet(Liste* chevalet) {
 	if (chevalet == NULL || chevalet->premier == NULL) return;
 
-	// Tri par insertion dans la liste chaînée
+	// Tri par insertion dans la liste chaÃ®nÃ©e
 	Maillion* courant = chevalet->premier;
 	while (courant != NULL) {
 		Maillion* next = courant->suivant;
 		while (next != NULL) {
 			if (courant->element > next->element) {
-				// Échange des valeurs
+				// Ã‰change des valeurs
 				char temp = courant->element;
 				courant->element = next->element;
 				next->element = temp;
@@ -145,9 +145,9 @@ Liste inverser(const Liste* li) {
 
 int dico(char*** tableau) {
 	const char* NOM_FICHIER = "ods4.txt";  // Nom du fichier constant
-	int Taille = 0;							 // Déclaration locale de Taille
+	int Taille = 0;							 // DÃ©claration locale de Taille
 	FILE* fichier = fopen(NOM_FICHIER, "r");
-	if (fichier != NULL) {						// Vérification si le fichier est ouvert avec succès
+	if (fichier != NULL) {						// VÃ©rification si le fichier est ouvert avec succÃ¨s
 		char buffer[CHAINE];
 		while (fgets(buffer, CHAINE, fichier)) {
 			Taille++;
@@ -155,12 +155,12 @@ int dico(char*** tableau) {
 
 		*tableau = (char**)malloc(Taille * sizeof(char*));
 		if (*tableau == NULL) {
-			printf("Erreur d'allocation mémoire\n");
+			printf("Erreur d'allocation mÃ©moire\n");
 			fclose(fichier);
-			return 0;  // Retourner 0 pour indiquer l'échec
+			return 0;  // Retourner 0 pour indiquer l'Ã©chec
 		}
 
-		rewind(fichier);  // Revenir au début du fichier
+		rewind(fichier);  // Revenir au dÃ©but du fichier
 
 		int index = 0;
 		while (fgets(buffer, CHAINE, fichier)) {
@@ -168,9 +168,9 @@ int dico(char*** tableau) {
 
 			(*tableau)[index] = (char*)malloc((strlen(buffer) + 1) * sizeof(char));
 			if ((*tableau)[index] == NULL) {
-				printf("Erreur d'allocation mémoire\n");
+				printf("Erreur d'allocation mÃ©moire\n");
 				fclose(fichier);
-				return 0;  // Retourner 0 pour indiquer l'échec
+				return 0;  // Retourner 0 pour indiquer l'Ã©chec
 			}
 			strcpy((*tableau)[index], buffer);
 			index++;
@@ -181,7 +181,7 @@ int dico(char*** tableau) {
 	}
 	else {
 		printf("Erreur lors de l'ouverture du fichier\n");
-		return 0;  // Retourner 0 pour indiquer l'échec
+		return 0;  // Retourner 0 pour indiquer l'Ã©chec
 	}
 }
 
@@ -205,11 +205,11 @@ int verifDico(char** dico, int Taille, const char* mot) {
 }
 
 int verifelen(const char* input, int nbc) {
-	// Vérifie si la longueur du mot est exactement de 4 caractères
+	// VÃ©rifie si la longueur du mot est exactement de 4 caractÃ¨res
 	if (strlen(input) == nbc) {
-		return 1;  // Le mot a 4 caractères
+		return 1;  // Le mot a 4 caractÃ¨res
 	}
-	return 0;  // Le mot n'a pas 4 caractères
+	return 0;  // Le mot n'a pas 4 caractÃ¨res
 }
 
 int lettresSuffisantes(const Liste* chevalet, const char* mot) {
@@ -229,7 +229,7 @@ int lettresSuffisantes(const Liste* chevalet, const char* mot) {
 		compteMot[mot[i] - 'A']++;
 	}
 
-	// Vérifier que le joueur a assez de chaque lettre
+	// VÃ©rifier que le joueur a assez de chaque lettre
 	for (int i = 0; i < MAX_ALPHABET; ++i) {
 		if (compteMot[i] > compteJoueur[i]) {
 			return 0;  // Pas assez de lettres
@@ -239,13 +239,13 @@ int lettresSuffisantes(const Liste* chevalet, const char* mot) {
 }
 
 int motValide(const char* mot, char** tableauDico, int tailleDico, const Liste* chevalet) {
-	// 1. Vérifier la longueur du mot
+	// 1. VÃ©rifier la longueur du mot
 	if (strlen(mot) != 4) {
 
 		return 0;
 	}
 
-	// 2. Vérifier si le mot est dans le dictionnaire
+	// 2. VÃ©rifier si le mot est dans le dictionnaire
 	int dansDico = 0;
 	for (int i = 0; i < tailleDico; ++i) {
 		if (strcmp(tableauDico[i], mot) == 0) {
@@ -258,13 +258,13 @@ int motValide(const char* mot, char** tableauDico, int tailleDico, const Liste* 
 		return 0;
 	}
 
-	// 3. Vérifier si le joueur a les lettres suffisantes
+	// 3. VÃ©rifier si le joueur a les lettres suffisantes
 	if (!lettresSuffisantes(chevalet, mot)) {
 
 		return 0;
 	}
 
-	// Si toutes les conditions sont respectées
+	// Si toutes les conditions sont respectÃ©es
 	return 1;
 }
 
@@ -287,13 +287,13 @@ int verifPlateau(const Liste* plateau, const char* lettres) {
 	int len = strlen(lettres);
 	int taille = somme(plateau); // Utilise votre fonction pour obtenir la taille de la liste.
 
-	// Si la liste est plus courte que la chaîne, impossible de vérifier.
+	// Si la liste est plus courte que la chaÃ®ne, impossible de vÃ©rifier.
 	if (len > taille) {
-		return 0; // Pas trouvé
+		return 0; // Pas trouvÃ©
 	}
 
-	// Vérification au début.
-	ConstIt it = iterer(plateau); // Initialiser l'itérateur au début de la liste.
+	// VÃ©rification au dÃ©but.
+	ConstIt it = iterer(plateau); // Initialiser l'itÃ©rateur au dÃ©but de la liste.
 	int i = 0;
 	while (!fini(&it) && i < len) {
 		if (courant(&it) != lettres[i]) {
@@ -303,11 +303,11 @@ int verifPlateau(const Liste* plateau, const char* lettres) {
 		i++;
 	}
 	if (i == len) {
-		return 1; // Lettres trouvées au début.
+		return 1; // Lettres trouvÃ©es au dÃ©but.
 	}
 
-	// Vérification à la fin.
-	// Positionner l'itérateur sur le (taille - len)-ième élément.
+	// VÃ©rification Ã  la fin.
+	// Positionner l'itÃ©rateur sur le (taille - len)-iÃ¨me Ã©lÃ©ment.
 	it = iterer(plateau);
 	for (int j = 0; j < taille - len; j++) {
 		suivant(&it);
@@ -316,13 +316,13 @@ int verifPlateau(const Liste* plateau, const char* lettres) {
 	i = 0;
 	while (!fini(&it) && i < len) {
 		if (courant(&it) != lettres[i]) {
-			return 0; // Pas trouvé.
+			return 0; // Pas trouvÃ©.
 		}
 		suivant(&it);
 		i++;
 	}
 
-	return 2; // Lettres trouvées à la fin.
+	return 2; // Lettres trouvÃ©es Ã  la fin.
 }
 
 void supprimerCaractere(char* chaine, char caractere) {
@@ -335,7 +335,7 @@ void supprimerCaractere(char* chaine, char caractere) {
 			j++;
 		}
 	}
-	chaine[j] = '\0';  // Terminer la chaîne
+	chaine[j] = '\0';  // Terminer la chaÃ®ne
 }
 
 void inversechaine(char* chaine) {
@@ -380,7 +380,7 @@ void jouerTour1(Liste* joueur, Liste* plateau, char** tableau, int Taille, int j
 int compterCaracteres(const char* chaine) {
 	int compteur = 0;
 
-	// Parcourir la chaîne jusqu'à la fin ('\0')
+	// Parcourir la chaÃ®ne jusqu'Ã  la fin ('\0')
 	while (chaine[compteur] != '\0') {
 		compteur++;
 	}
