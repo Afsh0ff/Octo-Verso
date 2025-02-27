@@ -134,16 +134,16 @@ void inclureFin(Liste* li, ItemL element) {
 	nouveau->suivant = NULL;
 
 	if (li->premier == NULL) {
-		// Si la liste est vide, le nouvel élément devient le premier élément
+		// Si la liste est vide, le nouvel Ã©lÃ©ment devient le premier Ã©lÃ©ment
 		li->premier = nouveau;
 	}
 	else {
-		// Parcourir la liste jusqu'au dernier élément
+		// Parcourir la liste jusqu'au dernier Ã©lÃ©ment
 		Maillion* temp = li->premier;
 		while (temp->suivant != NULL) {
 			temp = temp->suivant;
 		}
-		// Ajouter le nouvel élément à la fin
+		// Ajouter le nouvel Ã©lÃ©ment Ã  la fin
 		temp->suivant = nouveau;
 	}
 }
@@ -157,7 +157,7 @@ void transfererInFin(Liste* source, Liste* destination, int index) {
 	Iterateur iter;
 	initIterateur(source, &iter);
 
-	// Parcourir la liste source jusqu'à l'élément à transférer
+	// Parcourir la liste source jusqu'Ã  l'Ã©lÃ©ment Ã  transfÃ©rer
 	for (int i = 0; i < index; i++) {
 		if (finiIt(&iter)) {
 
@@ -166,10 +166,10 @@ void transfererInFin(Liste* source, Liste* destination, int index) {
 		suivantIt(&iter);
 	}
 
-	// Récupérer l'élément à transférer
+	// RÃ©cupÃ©rer l'Ã©lÃ©ment Ã  transfÃ©rer
 	ItemL element = effacer(&iter);
 
-	// Ajouter l'élément à la fin de la liste destination
+	// Ajouter l'Ã©lÃ©ment Ã  la fin de la liste destination
 	inclureFin(destination, element);
 }
 
@@ -180,12 +180,12 @@ int retrouverIndex(Liste* li, ItemL element) {
 	int index = 0;
 	while (!finiIt(&iter)) {
 		if (courantIt(&iter) == element) {
-			return index;  // Retourne l'index si l'élément est trouvé
+			return index;  // Retourne l'index si l'Ã©lÃ©ment est trouvÃ©
 		}
 		suivantIt(&iter);
 		index++;
 	}
-	return -1;  // Retourne -1 si l'élément n'est pas trouvé
+	return -1;  // Retourne -1 si l'Ã©lÃ©ment n'est pas trouvÃ©
 }
 
 void supprimerDebut(Liste* li) {
@@ -204,22 +204,22 @@ void supprimerFin(Liste* li) {
 	}
 
 	if (li->premier->suivant == NULL) {
-		// Si la liste a un seul élément
+		// Si la liste a un seul Ã©lÃ©ment
 		free(li->premier);
 		li->premier = NULL;
 	}
 	else {
-		// Parcourir la liste jusqu'à l'avant-dernier élément
+		// Parcourir la liste jusqu'Ã  l'avant-dernier Ã©lÃ©ment
 		Maillion* current = li->premier;
 		Maillion* prev = NULL;
 
-		// On parcourt jusqu'à ce que current pointe sur le dernier élément
+		// On parcourt jusqu'Ã  ce que current pointe sur le dernier Ã©lÃ©ment
 		while (current->suivant != NULL) {
 			prev = current;
 			current = current->suivant;
 		}
 
-		// Le dernier élément est maintenant pointed par current, et l'avant-dernier par prev
+		// Le dernier Ã©lÃ©ment est maintenant pointed par current, et l'avant-dernier par prev
 		free(current);
 		prev->suivant = NULL;
 	}
@@ -230,11 +230,11 @@ void transfererDebut(Liste* li1, Liste* li2) {
 		return;
 	}
 
-	// Extraire le premier élément de la liste source
+	// Extraire le premier Ã©lÃ©ment de la liste source
 	Maillion* element_a_transferer = li1->premier;
 	li1->premier = li1->premier->suivant;
 
-	// Ajouter cet élément en tête de la liste cible
+	// Ajouter cet Ã©lÃ©ment en tÃªte de la liste cible
 	element_a_transferer->suivant = li2->premier;
 	li2->premier = element_a_transferer;
 }
@@ -244,38 +244,38 @@ void transfererLast(Liste* li1, Liste* li2) {
 		return;
 	}
 
-	// Cas où la liste source a un seul élément
+	// Cas oÃ¹ la liste source a un seul Ã©lÃ©ment
 	if (li1->premier->suivant == NULL) {
-		// Retirer l'élément de la liste source
+		// Retirer l'Ã©lÃ©ment de la liste source
 		Maillion* element_a_transferer = li1->premier;
 		li1->premier = NULL;
 
-		// Ajouter cet élément en tête de la liste cible
+		// Ajouter cet Ã©lÃ©ment en tÃªte de la liste cible
 		element_a_transferer->suivant = li2->premier;
 		li2->premier = element_a_transferer;
 
 		return;
 	}
 
-	// Parcourir jusqu'au dernier élément de la liste source
+	// Parcourir jusqu'au dernier Ã©lÃ©ment de la liste source
 	Maillion* courant = li1->premier;
 	while (courant->suivant != NULL) {
 		courant = courant->suivant;
 	}
 
-	// `courant` est maintenant le dernier élément de la liste source
+	// `courant` est maintenant le dernier Ã©lÃ©ment de la liste source
 	Maillion* element_a_transferer = courant;
 	Maillion* precedent = li1->premier;
 
-	// Parcourir pour trouver l'élément précédent
+	// Parcourir pour trouver l'Ã©lÃ©ment prÃ©cÃ©dent
 	while (precedent->suivant != courant) {
 		precedent = precedent->suivant;
 	}
 
-	// Retirer l'élément de la liste source
+	// Retirer l'Ã©lÃ©ment de la liste source
 	precedent->suivant = NULL;
 
-	// Ajouter cet élément en tête de la liste cible
+	// Ajouter cet Ã©lÃ©ment en tÃªte de la liste cible
 	element_a_transferer->suivant = li2->premier;
 	li2->premier = element_a_transferer;
 }
@@ -292,10 +292,10 @@ int comparerListes(Liste* liste1, Liste* liste2) {
 		courant2 = courant2->suivant;
 	}
 
-	// Si l'une des listes est plus longue que l'autre, elles ne sont pas égales
+	// Si l'une des listes est plus longue que l'autre, elles ne sont pas Ã©gales
 	if (courant1 != NULL || courant2 != NULL) {
 		return 0;
 	}
 
-	return 1;  // Les listes sont égales
+	return 1;  // Les listes sont Ã©gales
 }
